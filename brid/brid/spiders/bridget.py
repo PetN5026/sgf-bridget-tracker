@@ -10,14 +10,14 @@ class BridgetSpider(scrapy.Spider):
     def parse(self, response):
 
         brid_item = BridItem()
-        instock = response.css("div.empty-state div ::text")
-        if instock is not None:
-            print("*************************************")
-            print(instock.get().strip())
-            brid_item["stock"] = instock.get().strip()
-        else:
-            brid_item["stock"] = "instock"
-
+        instock = response.css("span.wt-mr-md-2 ::text").get().strip()
+        # if instock is not None:
+        #     print("*************************************")
+        #     print(instock.get().strip())
+        #     brid_item["stock"] = instock.get().strip()
+        # else:
+        #     brid_item["stock"] = "instock"
+        brid_item["stock"] = instock
         yield brid_item
 
 

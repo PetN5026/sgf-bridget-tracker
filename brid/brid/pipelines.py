@@ -17,14 +17,14 @@ class BridPipeline:
     def process_item(self, item, spider):
 
         adapter = ItemAdapter(item)
-        if adapter.get("stock") != "instock":
+        if adapter.get("stock") == "0":
             adapter["stock"] = "NOT IN STOCK"
             print("not sending email")
             print("*******************************")
         else :
             print("in stock, sending email")
             print("********************************")
-            mailer.send(to=[email], subject="Bridget in stock", body="Click https://www.etsy.com/shop/SGFDevices")
+            mailer.send(to=[email], subject="Bridget in stock", body="Click https://www.etsy.com/listing/1342012889/sgf-bridget-mx-stickless-arcadefighting")
         return item
     def close_spider(self, item):
         pass
